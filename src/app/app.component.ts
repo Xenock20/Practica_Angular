@@ -7,6 +7,12 @@ import { Product } from './product.model';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+  registro = {
+    name: '',
+    email: '',
+    password: ''
+  }
+  widthImg = 10;
   name: string = 'Federico';
   age: number = 18;
   img: string = 'https://www.w3schools.com/howto/img_avatar.png';
@@ -44,6 +50,31 @@ export class AppComponent {
       price: 1.99,
       img: './assets/img/ix.jpg'
     },
+    {
+      name: 'iPhone 5',
+      price: 1.99,
+      img: './assets/img/i5.jpg'
+    },
+    {
+      name: 'iPhone 6',
+      price: 1.99,
+      img: './assets/img/i6.jpg'
+    },
+    {
+      name: 'iPhone 7',
+      price: 1.99,
+      img: './assets/img/i7.jpg'
+    },
+    {
+      name: 'iPhone 8',
+      price: 1.99,
+      img: './assets/img/i8.jpg'
+    },
+    {
+      name: 'iPhone X',
+      price: 1.99,
+      img: './assets/img/ix.jpg'
+    }
   ];
 
   toggleButton(): void {
@@ -71,5 +102,9 @@ export class AppComponent {
 
   deleteName(i:number): void {
     this.nombres.splice(i, 1);
+  }
+
+  onRegister(): void {
+    console.log(this.registro);
   }
 }

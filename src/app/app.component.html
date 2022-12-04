@@ -1,3 +1,39 @@
+<h1>Form</h1>
+<form (ngSubmit)="onRegister()" #myForm="ngForm">
+  <div class="input-group">
+    <label for="name">Nombre</label>
+    <input type="text" name="name" required id="name" [(ngModel)]="registro.name">
+    <p>Mensaje de error</p>
+  </div>
+  <div class="input-group">
+    <label for="email">Email</label>
+    <input type="email" name="email" required id="email" [(ngModel)]="registro.email">
+    <p>Mensaje de error</p>
+  </div>
+  <div class="input-group">
+    <label for="password">Password</label>
+    <input type="password" name="password" required id="password" [(ngModel)]="registro.password">
+    <p>Mensaje de error</p>
+  </div>
+  <button [disabled]="myForm.invalid" type="submit">Registrar</button>
+</form>
+
+<hr/>
+<h1>Class & Style</h1>
+<input type="text" required #nameInput5="ngModel" [(ngModel)]="persona.name">
+<p class="msg-err" [class.active]="nameInput5.invalid">El campo es requerido</p>
+<label >Nombre</label>
+<input type="text" required #nameInput6="ngModel" [(ngModel)]="persona.name">
+<p [style.font-style]="nameInput6.invalid ? 'italic':'normal'">Texto texto texto</p>
+<div>
+  <div>
+    <input type="number" [(ngModel)]="widthImg">
+  </div>
+  <div>
+    <img [src]="persona.avatar" alt="" [style.width.%]="widthImg">
+  </div>
+</div>
+<hr/>
 <h1>[ngSwitch]</h1>
 
 <input type="text" [(ngModel)]="persona.name">
@@ -11,9 +47,9 @@
 <hr/>
 <h1>*ngFor con Objetos</h1>
 
-<div>
+<div class="products--grid">
   <div *ngFor="let product of products">
-    <img [src]="product.img" alt="image" width="250">
+    <img [src]="product.img" alt="image">
     <h2>{{product.price}}</h2>
     <p>{{product.name}}</p>
   </div>
@@ -75,5 +111,5 @@
 <h1>Hola Mundo</h1>
 <h2>{{'Hola mundo'}}</h2>
 <h3>Hola soy {{name}} y tengo {{age}}</h3>
-<img src={{img}} alt="">
+<img src={{img}} alt="" width="100">
 <router-outlet></router-outlet>
