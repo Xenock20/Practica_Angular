@@ -7,7 +7,8 @@ import { Product } from './product.model';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  registro = {
+  imgParent = 'https://www.w3schools.com/howto/img_avatar.png'
+  /*registro = {
     name: '',
     email: '',
     password: ''
@@ -106,5 +107,5 @@ export class AppComponent {
 
   onRegister(): void {
     console.log(this.registro);
-  }
+  }*/
 }
