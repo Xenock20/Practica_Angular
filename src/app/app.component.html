@@ -115,6 +115,9 @@
 <img src={{img}} alt="" width="100">
 -->
 <input type="text" [(ngModel)]="imgParent">
-<app-img (loaded)="onLoaded($event)" [img]="imgParent"></app-img>
+<button (click)="toggleImages()" >Toggle Image</button>
+<app-img (loaded)="onLoaded($event)" [img]="imgParent" *ngIf="showImg"></app-img>
+
+<hr/>
 <app-product *ngFor="let product of products" [product]="product"></app-product>
 <router-outlet></router-outlet>
