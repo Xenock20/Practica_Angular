@@ -19,19 +19,19 @@ export class ImgComponent implements OnInit, OnDestroy {
 
   imgDefault = 'https://crocsegypt.com/Content/images/NO_image.jpg';
 
-  counter = 0;
-  counterFn: number | undefined;
+  // counter = 0;
+  // counterFn: number | undefined;
 
   ngOnInit() {
-    this.counterFn = window.setInterval(()=>{
-      this.counter++;
-      console.log(this.counter)
-    }, 1000)
+    // this.counterFn = window.setInterval(()=>{
+    //   this.counter++;
+    //   console.log(this.counter)
+    // }, 1000)
   }
 
   ngOnDestroy(): void {
-    console.log('onDestroy')
-    window.clearInterval(this.counterFn)
+    // console.log('onDestroy')
+    // window.clearInterval(this.counterFn)
   }
 
   imgError(){
