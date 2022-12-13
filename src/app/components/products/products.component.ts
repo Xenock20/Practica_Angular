@@ -1,3 +1,4 @@
+import { StoreService } from './../../services/store.service';
 import { Component } from '@angular/core';
 import { Product } from 'src/app/models/product.model';
 
@@ -8,9 +9,12 @@ import { Product } from 'src/app/models/product.model';
 })
 export class ProductsComponent {
 
-
   total = 0;
   myShoppingCart: Product[] = []
+
+  constructor(private storeService :StoreService){
+    this.myShoppingCart = this.storeService.getShoppingCart();
+  }
 
   products: Product[] = [
     {
@@ -77,8 +81,9 @@ export class ProductsComponent {
 
   onAddToShoppingCart(product: Product){
     //console.log(product)
-    this.myShoppingCart.push(product);
-    this.total = this.myShoppingCart.reduce((sum, item) => sum + item.price, 0)
+    //this.myShoppingCart.push(product);
+    this.storeService.addProduct(product)
+    this.total = this.storeService.getTotal()
   }
 
 }
