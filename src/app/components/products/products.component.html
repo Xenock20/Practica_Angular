@@ -1,3 +1,9 @@
+<p>
+  Today {{ today | date:'short' }}
+</p>
+<p>
+  Other Today {{ date | timeAgo }}
+</p>
 <div class="products--grid">
   <app-product
     *ngFor="let product of products"
