@@ -23,6 +23,7 @@ export class ImgComponent implements OnInit, OnDestroy {
   // counterFn: number | undefined;
 
   ngOnInit() {
+    console.log('ngOnInit');
     // this.counterFn = window.setInterval(()=>{
     //   this.counter++;
     //   console.log(this.counter)
@@ -30,7 +31,7 @@ export class ImgComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    // console.log('onDestroy')
+    console.log('onDestroy')
     // window.clearInterval(this.counterFn)
   }
 
