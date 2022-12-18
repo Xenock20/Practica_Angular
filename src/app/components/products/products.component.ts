@@ -74,7 +74,7 @@ export class ProductsComponent implements OnInit {
     })
   }
 
-  updateProdct(){
+  updateProduct(){
     // eslint-disable-next-line @typescript-eslint/no-unused-vars
     const change: UpdateProductDTO = {
       title: 'Update Product',
@@ -84,6 +84,16 @@ export class ProductsComponent implements OnInit {
       console.log(res)
       const productIndex = this.products.findIndex(item => item.id === this.productChosen.id)
       this.products[productIndex] = res
+    })
+  }
+
+  deleteProduct(){
+    const id = this.productChosen.id
+    this.productsService.delete(id).subscribe(res=>{
+      console.log(res)
+      const productIndex = this.products.findIndex(item => item.id === this.productChosen.id)
+      this.products.splice(productIndex, 1)
+      this.showProductDetail = false
     })
   }
 }
