@@ -1,7 +1,7 @@
 import { StoreService } from './../../services/store.service';
 import { ProductsService } from './../../services/products.service';
 import { Component, OnInit } from '@angular/core';
-import { Product } from 'src/app/models/product.model';
+import { CreateProductDTO, Product } from 'src/app/models/product.model';
 
 @Component({
   selector: 'app-products',
@@ -55,6 +55,22 @@ export class ProductsComponent implements OnInit {
       //console.log(products)
       this.toggleProductDetail()
       this.productChosen = products
+    })
+  }
+
+  createNewProduct(){
+    const product: CreateProductDTO = {
+      title: 'New Product',
+      description: 'Bla bla bla',
+      images: [''],
+      price: 1110,
+      categoryId: 2
+    }
+
+
+    this.productsService.create(product).subscribe(res=>{
+      console.log(res)
+      this.products.unshift(res)
     })
   }
 }
