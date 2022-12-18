@@ -1,7 +1,7 @@
 import { StoreService } from './../../services/store.service';
 import { ProductsService } from './../../services/products.service';
 import { Component, OnInit } from '@angular/core';
-import { CreateProductDTO, Product } from 'src/app/models/product.model';
+import { CreateProductDTO, Product, UpdateProductDTO } from 'src/app/models/product.model';
 
 @Component({
   selector: 'app-products',
@@ -71,6 +71,19 @@ export class ProductsComponent implements OnInit {
     this.productsService.create(product).subscribe(res=>{
       console.log(res)
       this.products.unshift(res)
+    })
+  }
+
+  updateProdct(){
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    const change: UpdateProductDTO = {
+      title: 'Update Product',
+    }
+    const id = this.productChosen.id
+    this.productsService.update(id, change).subscribe(res=>{
+      console.log(res)
+      const productIndex = this.products.findIndex(item => item.id === this.productChosen.id)
+      this.products[productIndex] = res
     })
   }
 }
