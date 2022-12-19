@@ -1,4 +1,5 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
+import { retry } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { CreateProductDTO, Product, UpdateProductDTO } from '../models/product.model';
 
@@ -18,6 +19,9 @@ export class ProductsService {
       params = params.set('offset', offset);
     }
     return this.http.get<Product[]>(this.url, { params })
+    .pipe(
+      retry(3)
+    )
   }
 
   getProduct(id: string){
