@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { CreateProductDTO, Product, UpdateProductDTO } from '../models/product.model';
 
@@ -11,12 +11,26 @@ export class ProductsService {
 
   url = 'https://young-sands-07814.herokuapp.com/api/products'
 
-  getAllProducts(){
-    return this.http.get<Product[]>(this.url)
+  getAllProducts(limit?: number, offset?: number){
+    let params = new HttpParams();
+    if(limit && offset){
+      params = params.set('limit', limit);
+      params = params.set('offset', offset);
+    }
+    return this.http.get<Product[]>(this.url, { params })
   }
 
   getProduct(id: string){
     return this.http.get<Product>(`${this.url}/${id}`)
+  }
+
+  getProductsByPage(limit: number, offset: number){
+    return this.http.get<Product[]>(`${this.url}`, {
+      params: {
+        limit,
+        offset
+      }
+    })
   }
 
   create(data: CreateProductDTO) {
