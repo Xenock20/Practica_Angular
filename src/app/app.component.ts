@@ -1,4 +1,6 @@
+import { UsersService } from './services/users.service';
 import { Component } from '@angular/core';
+import { AuthService } from './services/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -11,12 +13,36 @@ export class AppComponent {
   showImg = true;
 
 
+  constructor(
+    private authService: AuthService,
+    private usersService: UsersService
+  ){}
+
+
   toggleImages(){
     this.showImg = !this.showImg;
   }
 
   onLoaded(img: string){
     console.log(img);
+  }
+
+  createUser(){
+    this.usersService.createUser({
+      email: 'federico@example.com',
+      password: '123',
+      name: 'Federico'
+    })
+    .subscribe(res => {
+      console.log(res)
+    })
+  }
+
+  login(){
+    this.authService.login('federico@example.com', '123')
+    .subscribe(res=>{
+      console.log(res.access_token)
+    })
   }
 
   /*registro = {
