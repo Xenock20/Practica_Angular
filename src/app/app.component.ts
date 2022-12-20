@@ -12,6 +12,8 @@ export class AppComponent {
 
   showImg = true;
 
+  token = ''
+
 
   constructor(
     private authService: AuthService,
@@ -42,6 +44,14 @@ export class AppComponent {
     this.authService.login('federico@example.com', '123')
     .subscribe(res=>{
       console.log(res.access_token)
+      this.token = res.access_token
+    })
+  }
+
+  getProfile(){
+    this.authService.profile(this.token)
+    .subscribe(res=>{
+      console.log(res)
     })
   }
 
