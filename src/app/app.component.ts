@@ -1,3 +1,4 @@
+import { FilesService } from './services/files.service';
 import { UsersService } from './services/users.service';
 import { Component } from '@angular/core';
 import { AuthService } from './services/auth.service';
@@ -17,7 +18,8 @@ export class AppComponent {
 
   constructor(
     private authService: AuthService,
-    private usersService: UsersService
+    private usersService: UsersService,
+    private filesService: FilesService
   ){}
 
 
@@ -53,6 +55,10 @@ export class AppComponent {
     .subscribe(res=>{
       console.log(res)
     })
+  }
+
+  downloadPDF(){
+    this.filesService.getFile('myPdf', 'https://young-sands-07814.herokuapp.com/api/files/dummy.pdf', 'application/pdf').subscribe()
   }
 
   /*registro = {
