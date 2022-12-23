@@ -12,6 +12,8 @@ export class FilesService {
     private http: HttpClient
   ) { }
 
+  url = 'https://young-sands-07814.herokuapp.com/api/files'
+
   getFile(name: string, url: string, type: string){
     return this.http.get(url, {responseType: 'blob'})
     .pipe(
@@ -21,5 +23,18 @@ export class FilesService {
       }),
       map(()=> true)
     )
+  }
+
+  uploadFile(file: Blob){
+    const dto = new FormData()
+
+    dto.append('file', file)
+
+    return this.http.post(`${this.url}/upload`, dto, {
+      // headers: {
+      //   'Content-type': 'multipart/form-data'
+      // }
+    })
+
   }
 }

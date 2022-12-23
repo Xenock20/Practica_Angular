@@ -124,5 +124,6 @@
 <button (click)="login()">Login</button>
 <button (click)="getProfile()">Profile</button>
 <button (click)="downloadPDF()">Descargar PDF</button>
+<input type="file" (change)="onUpload($event)">
 <app-products></app-products>
 <router-outlet></router-outlet>

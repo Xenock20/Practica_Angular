@@ -61,6 +61,17 @@ export class AppComponent {
     this.filesService.getFile('myPdf', 'https://young-sands-07814.herokuapp.com/api/files/dummy.pdf', 'application/pdf').subscribe()
   }
 
+  onUpload(event: Event){
+    const elemento = event.target as HTMLInputElement
+    const file = elemento.files?.item(0)
+    if(file){
+      this.filesService.uploadFile(file)
+      .subscribe(rta => {
+        console.log(rta)
+      })
+    }
+  }
+
   /*registro = {
     name: '',
     email: '',
