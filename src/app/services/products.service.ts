@@ -12,6 +12,17 @@ export class ProductsService {
   constructor(private http: HttpClient) { }
 
   url = 'https://young-sands-07814.herokuapp.com/api/products'
+  urlCategory = 'https://young-sands-07814.herokuapp.com/api/categories'
+
+
+  getByCategory(categoryId: string, limit?: number, offset?: number){
+    let params = new HttpParams();
+    if(limit && offset){
+      params = params.set('limit', limit);
+      params = params.set('offset', offset);
+    }
+    return this.http.get<Product[]>(`${this.urlCategory}/${categoryId}/products`, { params })
+  }
 
   getAllProducts(limit?: number, offset?: number){
     let params = new HttpParams();
