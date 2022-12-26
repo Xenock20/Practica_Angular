@@ -1,3 +1,5 @@
+import { Category } from 'src/app/models/category.model';
+import { CategoriesService } from './../../services/categories.service';
 import { StoreService } from './../../services/store.service';
 import { Component, OnInit } from '@angular/core';
 
@@ -8,7 +10,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavComponent implements OnInit {
 
-  constructor(private storeService :StoreService){}
+  categories: Category[] = []
+
+  constructor(
+    private storeService :StoreService,
+    private categoriesService: CategoriesService
+    ){}
 
   activeMenu = false;
   counter = 0;
@@ -17,9 +24,17 @@ export class NavComponent implements OnInit {
     this.storeService.myCart$.subscribe(data => {
       this.counter = data.length;
     })
+
+    this.getAllCategories()
   }
 
   toggleMenu(){
     this.activeMenu = !this.activeMenu;
+  }
+
+  getAllCategories(){
+    this.categoriesService.getAll().subscribe(data => {
+      this.categories = data
+    })
   }
 }
