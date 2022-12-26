@@ -2,6 +2,7 @@ import { ProductsService } from './../../services/products.service';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from 'src/app/models/product.model';
+import { switchMap } from 'rxjs/operators'
 
 @Component({
   selector: 'app-category',
@@ -21,14 +22,18 @@ export class CategoryComponent implements OnInit {
   ){}
 
   ngOnInit(){
-    this.activatedRoute.paramMap.subscribe(paramas => {
-      this.categoryId = paramas.get('id')
-      if(this.categoryId){
-        this.productsService.getByCategory(this.categoryId, this.limit, this.offset)
-        .subscribe(data => {
-          this.products = data
-        })
-      }
+    this.activatedRoute.paramMap
+    .pipe(
+      switchMap(params => {
+        this.categoryId = params.get('id')
+        if(this.categoryId){
+          return this.productsService
+          .getByCategory(this.categoryId, this.limit, this.offset)
+        }
+        return []
+      })
+    ).subscribe(data => {
+      this.products = data
     })
   }
 
