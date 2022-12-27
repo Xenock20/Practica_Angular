@@ -1,3 +1,4 @@
+import { ProductDetailComponent } from './pages/product-detail/product-detail.component';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'register', component: RegisterComponent},
   {path: 'profile', component: ProfileComponent},
   {path: 'recovery', component: RecoveryComponent},
+  {path: 'product/:id', component: ProductDetailComponent},
   {path: '**', component: NotFoundComponent},
 ];
 
